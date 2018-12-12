@@ -12,7 +12,7 @@
   (cond 
     (<= 6 num-of-items 10) 15
     (<= 11 num-of-items 20) 20
-    (> num-of-items 20) 30
+    (<= 21 num-of-items) 30
     true 0))
 
 (defn reducted-price-ratio [num-of-items]
