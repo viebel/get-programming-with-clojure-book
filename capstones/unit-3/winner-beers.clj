@@ -31,14 +31,14 @@
     "english"
     true "french"))
 
-(defn claim-as-str [nationality milliliters]
-   (str "Winner is " nationality ", he drank " milliliters " ml."))
+(defn winner-string [nationality milliliters]
+   (str "The winner is " nationality ", he drank " milliliters " ml."))
   
-(defn most-beer-with-quantity [cans pints demis]
+(defn most-beer-and-quantity [cans pints demis]
   (case (most-beer cans pints demis)
-    "american" (claim-as-str "american" (cans->ml cans))
-    "english" (claim-as-str "english" (pints->ml pints))
-    (claim-as-str "french" (demis->ml demis))))
+    "american" (winner-string "american" (cans->ml cans))
+    "english" (winner-string "english" (pints->ml pints))
+    (winner-string "french" (demis->ml demis))))
 
 (dbg (most-beer 1 1 1))
 (dbg (most-beer 6 7 8))
@@ -46,7 +46,7 @@
 (dbg (most-beer 52 53 48))
 
 
-(dbg (most-beer-with-quantity 1 1 1))
-(dbg (most-beer-with-quantity 6 7 8))
-(dbg (most-beer-with-quantity 6 17 8))
-(dbg (most-beer-with-quantity 52 53 48))     
+(dbg (most-beer-and-quantity 1 1 1))
+(dbg (most-beer-and-quantity 6 7 8))
+(dbg (most-beer-and-quantity 6 17 8))
+(dbg (most-beer-and-quantity 52 53 48))
