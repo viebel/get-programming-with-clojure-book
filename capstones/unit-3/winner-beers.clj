@@ -8,26 +8,40 @@
 ; Your mission is to write a function calc-most-drunk that receive three arguments x, y and z and returns a number corresponding to the guy that drank the most: 1 for the american, 2 for the british, 3 for the french.
 ; Bonus: return a string with the name of the winner and the qunatity of beers he drunk
 
-(defn us->cl [num] num)
-(defn en->cl [num] num)
-(defn fr->cl [num] num)
+(def a-can-in-ml 591)
+(def a-pint-in-ml 473)
+(def a-demi-in-ml 500)
 
-(defn most-beer [american english french]
+(defn ->ml [nationality quantity]
+  (* quantity 
+     (case nationality
+        "american" a-can-in-ml
+        "english" a-pint-in-ml
+        "french"  a-demi-in-ml)))
+ 
+(defn cans->ml [x]
+  (* x 591))
+  
+(defn pints->ml [x]
+  (* x 473))
+  
+(defn demis->ml [x]
+  (* x 500))
+
+
+(defn most-beer [cans pints demis]
   (cond
-    (> (us->cl american) (max (en->cl english) (fr->cl french))) 
+    (>= (cans->ml cans) (max (pints->ml pints) (demis->cl demis))) 
     "american"
-    (> (en->cl english) (max (us->cl american) (fr->cl french))) 
+    (>= (pints->ml pints) (max (cans->ml cans) (demis->cl demis))) 
     "english"
     :else "french"))
 
-(defn display-winner [winner qty]
-   (str "The " winner " is the winner: he drunk " qty " cc of beers"))
+(defn claim-as-str [nationality milliliters]
+   (str "I am " nationality " and I drank " milliliters " milliliters of beers"))
   
-(defn most-beer-with-quantity [american english french]
-  (case (most-beer american english french)
-    "american" (display-winner "american" (us->cl american))
-    "english" (display-winner "english" (en->cl english))
-    (display-winner "french" (fr->cl english))))          
-
-(most-beer 3 4 5)
-(most-beer-with-quantity 3 4 5)
+(defn most-beer-with-quantity [cans pints demis]
+  (case (most-beer cans pints demis)
+    "american" (claim-as-str "american" (cans->ml cans))
+    "english" (claim-as-str "english" (pints->ml pints))
+    (claim-as-str "french" (demis->ml demis))))          
