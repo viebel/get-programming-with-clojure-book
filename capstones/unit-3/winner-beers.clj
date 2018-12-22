@@ -29,7 +29,7 @@
     "american"
     (>= (pints->ml pints) (max (cans->ml cans) (demis->ml demis))) 
     "english"
-    :else "french"))
+    true "french"))
 
 (defn claim-as-str [nationality milliliters]
    (str "Winner is " nationality ", he drank " milliliters " ml."))
