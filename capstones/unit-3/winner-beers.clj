@@ -1,24 +1,19 @@
-; An american, a british and a french are sitting at a pub. After a couple of hours, each of them brags about the amount of beer he has drunk:
-; The american guy says: "I have drunk x 20 ounce cans"
-; The british guy replies: "I have drunk y pints"
-; The french guy concludes: "I have drunk demis"
+; An American, a Brit and a Frenchman are sitting at a pub. After a couple of hours, each of them starts to brag about the amount of beer he drank:
+; The american guy says: "I drank x 20 ounce cans"
+; The American says: "I drank x 20 ounce cans"
+; The Brit replies: "I drank y pints"
+; The Frenchman concludes: "I drank z demis"
 
-; Which one of them has drunk the most?
 
-; Your mission is to write a function calc-most-drunk that receive three arguments x, y and z and returns a number corresponding to the guy that drank the most: 1 for the american, 2 for the british, 3 for the french.
-; Bonus: return a string with the name of the winner and the qunatity of beers he drunk
+; The question is: which one of them drank the most?
+; As a reminder, we have:
+; A 20 ounce can is: 591 milliliters
+; A pint is: 473 milliliters
+; A demi is: 500 milliliters
+; Your mission to write in the Clojure REPL two functions:
+;; 1. a 3-arity function named most-beer that receives three arguments cans, pints and demis and returns a string with the nationality of the person that drank the highest quantity of beer. The string is either "american", "english" or "french". For instance (most-drunk 10 2 3) should return "american".
+;; 2. a 3-arity function named most-beer-and-quantity that receives the same arguments as most-drunk and returns a strings that contains in addition to nationality of the person that drank the highest quantity of beer, the amount of beer is milliliter that the person drank. For instance (most-drunk 10 2 3) should return "The american drank the most: he drank 5910 milliliters of beer".
 
-(def a-can-in-ml 591)
-(def a-pint-in-ml 473)
-(def a-demi-in-ml 500)
-
-(defn ->ml [nationality quantity]
-  (* quantity 
-     (case nationality
-        "american" a-can-in-ml
-        "english" a-pint-in-ml
-        "french"  a-demi-in-ml)))
- 
 (defn cans->ml [x]
   (* x 591))
   
@@ -28,20 +23,30 @@
 (defn demis->ml [x]
   (* x 500))
 
-
 (defn most-beer [cans pints demis]
   (cond
-    (>= (cans->ml cans) (max (pints->ml pints) (demis->cl demis))) 
+    (>= (cans->ml cans) (max (pints->ml pints) (demis->ml demis))) 
     "american"
-    (>= (pints->ml pints) (max (cans->ml cans) (demis->cl demis))) 
+    (>= (pints->ml pints) (max (cans->ml cans) (demis->ml demis))) 
     "english"
     :else "french"))
 
 (defn claim-as-str [nationality milliliters]
-   (str "I am " nationality " and I drank " milliliters " milliliters of beers"))
+   (str "Winner is " nationality ", he drank " milliliters " ml."))
   
 (defn most-beer-with-quantity [cans pints demis]
   (case (most-beer cans pints demis)
     "american" (claim-as-str "american" (cans->ml cans))
     "english" (claim-as-str "english" (pints->ml pints))
-    (claim-as-str "french" (demis->ml demis))))          
+    (claim-as-str "french" (demis->ml demis))))
+
+(dbg (most-beer 1 1 1))
+(dbg (most-beer 6 7 8))
+(dbg (most-beer 6 17 8))
+(dbg (most-beer 52 53 48))
+
+
+(dbg (most-beer-with-quantity 1 1 1))
+(dbg (most-beer-with-quantity 6 7 8))
+(dbg (most-beer-with-quantity 6 17 8))
+(dbg (most-beer-with-quantity 52 53 48))     
