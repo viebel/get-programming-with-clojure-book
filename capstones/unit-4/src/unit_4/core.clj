@@ -1,3 +1,4 @@
+(ns unit-4.core)
 ; An American, a Brit and a Frenchman are sitting at a pub. After a couple of hours, each of them starts to brag about the amount of beer he drank:
 ; The american guy says: "I drank x 20 ounce cans"
 ; The American says: "I drank x 20 ounce cans"
@@ -40,4 +41,7 @@
     "english" (winner-string "english" (pints->ml pints))
     (winner-string "french" (demis->ml demis))))
 
-
+(defn -main [cans pints demis]
+  (println (most-beer-and-quantity (read-string cans)
+                                   (read-string pints)
+                                   (read-string demis))))
