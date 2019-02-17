@@ -30,8 +30,7 @@
   (case mode
     "most-drunk"  (println (most-beer cans pints demis))
     "winner-and-quantity" (println (most-beer-and-quantity cans pints demis))
-    (println (str "Error: The mode " mode " is not supported.")))
-  )
+    (println (str "Error: The mode " mode " is not supported."))))
 
 (defn -main [mode cans-str pints-str demis-str]
   (display mode
