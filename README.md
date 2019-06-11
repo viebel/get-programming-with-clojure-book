@@ -1,6 +1,10 @@
-# Get Programming with Clojure
-Source code for [Get Programming with Clojure book](https://www.manning.com/books/get-programming-with-clojure)
 
+The simplest way to work on a Capstone Project is using [Nighlight Editor](https://sekao.net/nightlight/).
 
-# Capstone projects
-The solutions to the capstone project of each unit are under the `captsone` folder.
+~~~clojure
+cd capstones
+clj -m nightlight.core
+~~~
+
+And then open your browser at http://localhost:4000 to work on your code.
+

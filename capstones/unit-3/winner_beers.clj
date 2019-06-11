@@ -40,4 +40,8 @@
     "english" (winner-string "english" (pints->ml pints))
     (winner-string "french" (demis->ml demis))))
 
+(most-beer-and-quantity 2 3 4)
+
+(comment 
+  (+ 1 2))
 

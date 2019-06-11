@@ -1,0 +1,2 @@
+{:paths ["src"]
+ :deps {nightlight {:mvn/version "RELEASE"}}}
